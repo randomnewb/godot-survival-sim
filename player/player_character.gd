@@ -4,19 +4,20 @@ extends CharacterBody2D
 
 @onready var input_vector = Vector2.ZERO;
 @onready var last_direction = "down"
+@onready var animation
 
 @onready var height = ProjectSettings.get_setting("display/window/size/viewport_height");
 @onready var width = ProjectSettings.get_setting("display/window/size/viewport_width");
 
+@onready var player_inventory = preload("res://inventories/player_inventory.tscn")
+
 @onready var animated_sprite_2d = $AnimatedSprite2D
 
-@onready var animation
-
-
+func _ready():
+	pass;
 
 func _process(delta):
 	input_vector = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()
-	
 	
 	if Input.is_action_pressed("tap_left_mouse"):
 		var target = get_global_mouse_position() - global_position;

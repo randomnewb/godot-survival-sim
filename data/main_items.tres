@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="ItemProtoset" load_steps=2 format=3 uid="uid://ecpdoevgwfr"]
+
+[ext_resource type="Script" path="res://addons/gloot/item_protoset.gd" id="1_cqp5u"]
+
+[resource]
+script = ExtResource("1_cqp5u")
+json_data = "[
+    {
+        \"id\": \"minimal_item\"
+    },
+    {
+        \"id\": \"minimal_item_2\"
+    },
+    {
+        \"id\": \"bronze_dagger\",
+        \"image\": \"res://assets/sprites/items/bronze_dagger.png\",
+        \"name\": \"Bronze Dagger\"
+    },
+    {
+        \"id\": \"item2\",
+        \"image\": \"res://images/item_scroll_blue.png\",
+        \"name\": \"item 2\"
+    }
+]"

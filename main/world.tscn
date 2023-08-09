@@ -1,8 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://bj63f2r1w3da8"]
+[gd_scene load_steps=4 format=3 uid="uid://bj63f2r1w3da8"]
 
 [ext_resource type="PackedScene" uid="uid://cgcppww0iyw3a" path="res://player/player_character.tscn" id="1_7uhe6"]
+[ext_resource type="Script" path="res://main/world.gd" id="1_eyapg"]
+[ext_resource type="PackedScene" uid="uid://b4vuyuosxri4b" path="res://inventories/player_inventory.tscn" id="3_5sh5d"]
 
 [node name="World" type="Node"]
+script = ExtResource("1_eyapg")
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("1_7uhe6")]
-position = Vector2(49, 33)
+z_index = 1
+position = Vector2(194, 54)
+
+[node name="PlayerInventory" parent="." instance=ExtResource("3_5sh5d")]
+
+[connection signal="area_entered" from="PlayerCharacter/AreaPickup" to="." method="_on_area_pickup_area_entered"]
+
+[editable path="PlayerCharacter"]
+[editable path="PlayerInventory"]

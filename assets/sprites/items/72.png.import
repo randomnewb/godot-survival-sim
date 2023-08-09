@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1hp8mqlkll56"
-path="res://.godot/imported/Swashbuckler_walk.png-08dc23ff0c31e400a3ee68878d134191.ctex"
+uid="uid://cs54yapliqrdu"
+path="res://.godot/imported/72.png-db54340245c1af01369b15a23c79343a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Swashbuckler_walk.png"
-dest_files=["res://.godot/imported/Swashbuckler_walk.png-08dc23ff0c31e400a3ee68878d134191.ctex"]
+source_file="res://assets/sprites/items/72.png"
+dest_files=["res://.godot/imported/72.png-db54340245c1af01369b15a23c79343a.ctex"]
 
 [params]
 

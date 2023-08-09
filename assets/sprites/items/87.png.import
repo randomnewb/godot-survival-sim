@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://p64djd54gjpo"
-path="res://.godot/imported/Swashbuckler_idle.png-68e6af4ef6e6f351364e2042a952c7be.ctex"
+uid="uid://bk483f7w5ndel"
+path="res://.godot/imported/87.png-597aa2101aa0bb44b3ea8a430c361178.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Swashbuckler_idle.png"
-dest_files=["res://.godot/imported/Swashbuckler_idle.png-68e6af4ef6e6f351364e2042a952c7be.ctex"]
+source_file="res://assets/sprites/items/87.png"
+dest_files=["res://.godot/imported/87.png-597aa2101aa0bb44b3ea8a430c361178.ctex"]
 
 [params]
 
