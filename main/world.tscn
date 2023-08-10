@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bj63f2r1w3da8"]
+[gd_scene load_steps=6 format=3 uid="uid://bj63f2r1w3da8"]
 
 [ext_resource type="PackedScene" uid="uid://cgcppww0iyw3a" path="res://player/player_character.tscn" id="1_7uhe6"]
 [ext_resource type="Script" path="res://main/world.gd" id="1_eyapg"]
 [ext_resource type="PackedScene" uid="uid://b4vuyuosxri4b" path="res://inventories/player_inventory.tscn" id="3_5sh5d"]
+[ext_resource type="Script" path="res://addons/gloot/inventory_item.gd" id="4_k2esd"]
+[ext_resource type="Resource" uid="uid://ecpdoevgwfr" path="res://data/main_items.tres" id="5_v5xo5"]
 
 [node name="World" type="Node"]
 script = ExtResource("1_eyapg")
@@ -12,7 +14,30 @@ z_index = 1
 position = Vector2(194, 54)
 
 [node name="PlayerInventory" parent="." instance=ExtResource("3_5sh5d")]
-visible = false
+
+[node name="CtrlInventory" parent="PlayerInventory" index="0"]
+offset_right = -202.0
+offset_bottom = 0.0
+
+[node name="_Node_31394" type="Node" parent="PlayerInventory/CtrlInventory/Inventory" index="0"]
+script = ExtResource("4_k2esd")
+protoset = ExtResource("5_v5xo5")
+prototype_id = "bronze_dagger"
+
+[node name="_Node_31466" type="Node" parent="PlayerInventory/CtrlInventory/Inventory" index="1"]
+script = ExtResource("4_k2esd")
+protoset = ExtResource("5_v5xo5")
+prototype_id = "bronze_dagger"
+
+[node name="_Node_31538" type="Node" parent="PlayerInventory/CtrlInventory/Inventory" index="2"]
+script = ExtResource("4_k2esd")
+protoset = ExtResource("5_v5xo5")
+prototype_id = "bronze_dagger"
+
+[node name="_Node_31610" type="Node" parent="PlayerInventory/CtrlInventory/Inventory" index="3"]
+script = ExtResource("4_k2esd")
+protoset = ExtResource("5_v5xo5")
+prototype_id = "bronze_dagger"
 
 [connection signal="area_entered" from="PlayerCharacter/AreaPickup" to="." method="_on_area_pickup_area_entered"]
 

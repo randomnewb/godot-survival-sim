@@ -16,12 +16,22 @@ signal item_removed(prototype_id)
 func _input(event):
 	if event.is_action_pressed("open_inventory"):
 		open_inventory();
+	if event.is_action_pressed("drop_item"):
+		drop_item();
 
 func _ready():
 	spawn_interactable("bronze_dagger");
 	player_inventory.create_and_add_item("bronze_dagger");
 
 func _process(delta):
+	pass;
+#	var items: Array = ctrl_inventory.get_selected_inventory_items()
+#	if items:
+#		player_inventory.remove_child(items[0])
+##		print(items[0])
+#		spawn_interactable(items[0].prototype_id)
+
+func drop_item():
 	var items: Array = ctrl_inventory.get_selected_inventory_items()
 	if items:
 		player_inventory.remove_child(items[0])
@@ -40,16 +50,15 @@ func spawn_interactable(item_to_spawn):
 	item_to_spawn.position = player_character.position + Vector2(25, 25);
 	
 func _on_area_pickup_area_entered(area):
-	print(area.name);
+#	print(area.name);
 	var regex = RegEx.new()
 	regex.compile("^\\w+[a-zA-Z]")
 #	print("item name", item_to_spawn)
 	var result = regex.search(area.name)
-	if result:
-		print("item is: ", result.get_string());
+#	if result:
+#		print("item is: ", result.get_string());
 	var converted_name = result.get_string()
 	player_inventory.create_and_add_item(converted_name);
-	
 	area.queue_free();
 
 func open_inventory():
