@@ -13,37 +13,37 @@ extends Control
 
 
 func _ready() -> void:
-    btn_left_to_right.pressed.connect(Callable(self, "_on_ltor_pressed"))
-    btn_right_to_left.pressed.connect(Callable(self, "_on_rtol_pressed"))
-    btn_equip.pressed.connect(Callable(self, "_on_equip_pressed"))
-    btn_unequip.pressed.connect(Callable(self, "_on_unequip_pressed"))
+	btn_left_to_right.pressed.connect(Callable(self, "_on_ltor_pressed"))
+	btn_right_to_left.pressed.connect(Callable(self, "_on_rtol_pressed"))
+	btn_equip.pressed.connect(Callable(self, "_on_equip_pressed"))
+	btn_unequip.pressed.connect(Callable(self, "_on_unequip_pressed"))
 
 
 func _on_ltor_pressed() -> void:
-    var items: Array = ctrl_inventory_left.get_selected_inventory_items()
-    if items.is_empty():
-        return
+	var items: Array = ctrl_inventory_left.get_selected_inventory_items()
+	if items.is_empty():
+		return
 
-    for item in items:
-        inventory_left.transfer(item, inventory_right)
+	for item in items:
+		inventory_left.transfer(item, inventory_right)
 
 
 func _on_rtol_pressed() -> void:
-    var items: Array = ctrl_inventory_right.get_selected_inventory_items()
-    if items.is_empty():
-        return
+	var items: Array = ctrl_inventory_right.get_selected_inventory_items()
+	if items.is_empty():
+		return
 
-    for item in items:
-        inventory_right.transfer(item, inventory_left)
+	for item in items:
+		inventory_right.transfer(item, inventory_left)
 
 
 func _on_equip_pressed() -> void:
-    var items: Array = ctrl_inventory_left.get_selected_inventory_items()
-    if items.is_empty():
-        return
+	var items: Array = ctrl_inventory_left.get_selected_inventory_items()
+	if items.is_empty():
+		return
 
-    slot.item = items[0]
+	slot.item = items[0]
 
 
 func _on_unequip_pressed() -> void:
-    slot.item = null
+	slot.item = null

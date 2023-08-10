@@ -12,6 +12,7 @@ z_index = 1
 position = Vector2(194, 54)
 
 [node name="PlayerInventory" parent="." instance=ExtResource("3_5sh5d")]
+visible = false
 
 [connection signal="area_entered" from="PlayerCharacter/AreaPickup" to="." method="_on_area_pickup_area_entered"]
 
