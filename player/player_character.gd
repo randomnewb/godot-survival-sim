@@ -1,10 +1,11 @@
 extends CharacterBody2D
 
-@export var speed = 100;
+@export var speed = 80;
 
 @onready var input_vector = Vector2.ZERO;
 @onready var last_direction = "down"
 @onready var animation
+@onready var mining = false
 
 @onready var height = ProjectSettings.get_setting("display/window/size/viewport_height");
 @onready var width = ProjectSettings.get_setting("display/window/size/viewport_width");
@@ -12,6 +13,8 @@ extends CharacterBody2D
 @onready var player_inventory = preload("res://inventories/player_inventory.tscn")
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
+
+signal pick_up_item
 
 func _ready():
 	pass;
@@ -27,11 +30,22 @@ func _process(delta):
 		
 	if input_vector != Vector2.ZERO:
 		last_direction = returned_direction(input_vector)
-		animation = "walk_" + str(returned_direction(input_vector))
-		animated_sprite_2d.play(animation);
+		if not mining:
+			animation = "walk_" + str(returned_direction(input_vector))
+			animated_sprite_2d.play(animation);
+	elif Input.is_action_just_pressed("ui_accept"):
+		# mining action
+		if not mining:
+			mining = true;
+			animation = "mine_" + str(last_direction)
+			animated_sprite_2d.play(animation);
+			await get_tree().create_timer(0.85).timeout;
+			mining = false;
 	else:
-		animation = "idle_" + str(last_direction)
-		animated_sprite_2d.play(animation);
+		if not mining:
+			animation = "idle_" + str(last_direction)
+			animated_sprite_2d.play(animation);
+
 	position.x = clamp(position.x, 5, width - 5);
 	position.y = clamp(position.y, 5, height - 5);
 	
@@ -40,11 +54,10 @@ func _process(delta):
 #	var ray_collide = ray_cast_2d.get_collider()
 #	if ray_collide:
 #		print("ray: ",ray_collide)
-	
-	move_and_collide(input_vector * speed * delta);
+	if not mining:
+		move_and_collide(input_vector * speed * delta);
 
 func returned_direction(vector: Vector2):
-	vector.normalized();
 	if abs(vector.x) > abs(vector.y):
 		if vector.x < 0.0:
 			return "left"
@@ -55,3 +68,6 @@ func returned_direction(vector: Vector2):
 			return "up";
 		else:
 			return "down";
+
+func _on_area_pickup_area_entered(area):
+	emit_signal("pick_up_item", area);
