@@ -14,6 +14,9 @@ extends CharacterBody2D
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
 
+@onready var area_hitbox = $AreaHitbox
+
+
 signal pick_up_item
 
 func _ready():
@@ -33,14 +36,17 @@ func _process(delta):
 		if not mining:
 			animation = "walk_" + str(returned_direction(input_vector))
 			animated_sprite_2d.play(animation);
+		area_hitbox.position = input_vector * 12;
 	elif Input.is_action_just_pressed("ui_accept"):
 		# mining action
 		if not mining:
 			mining = true;
+			area_hitbox.monitoring = true;
 			animation = "mine_" + str(last_direction)
 			animated_sprite_2d.play(animation);
 			await get_tree().create_timer(0.85).timeout;
 			mining = false;
+			area_hitbox.monitoring = false;
 	else:
 		if not mining:
 			animation = "idle_" + str(last_direction)
