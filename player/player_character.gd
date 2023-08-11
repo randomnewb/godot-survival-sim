@@ -4,6 +4,7 @@ extends CharacterBody2D
 
 @onready var input_vector = Vector2.ZERO;
 @onready var last_direction = "down"
+@onready var last_vector = Vector2.ZERO;
 @onready var animation
 @onready var mining = false
 
@@ -16,22 +17,34 @@ extends CharacterBody2D
 
 @onready var area_hitbox = $AreaHitbox
 
+@onready var operating_system = OS.get_name()
 
 signal pick_up_item
+signal dropped_item
 
 func _ready():
 	pass;
 
+func _input(event):
+	if event.is_action_pressed("drop_item"):
+		drop_item(last_vector);
+		
+func drop_item(last_vector):
+	emit_signal("dropped_item", last_vector)
+
 func _process(delta):
 	input_vector = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()
 	
-	if Input.is_action_pressed("tap_left_mouse"):
-		var target = get_global_mouse_position() - global_position;
-		input_vector = target.normalized();
+#	print(operating_system)
+	if operating_system == "Android" or operating_system == "iOS":
+		if Input.is_action_pressed("tap_left_mouse"):
+			var target = get_global_mouse_position() - global_position;
+			input_vector = target.normalized();
 
 	returned_direction(input_vector)
 		
 	if input_vector != Vector2.ZERO:
+		last_vector = input_vector
 		last_direction = returned_direction(input_vector)
 		if not mining:
 			animation = "walk_" + str(returned_direction(input_vector))
