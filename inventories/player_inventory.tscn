@@ -136,7 +136,7 @@ cache/0/8/0/kerning_overrides/8/0 = Vector2(0, 0)
 
 [sub_resource type="Theme" id="Theme_gk631"]
 default_font = SubResource("FontFile_yi05j")
-default_font_size = 8
+default_font_size = 4
 
 [node name="PlayerInventory" type="Control"]
 layout_mode = 3

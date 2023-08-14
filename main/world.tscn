@@ -12,7 +12,7 @@ script = ExtResource("1_eyapg")
 [node name="PlayerInventory" parent="." instance=ExtResource("3_5sh5d")]
 
 [node name="CtrlInventory" parent="PlayerInventory" index="0"]
-offset_right = -181.0
+offset_right = -233.0
 offset_bottom = -1.0
 
 [node name="_Node_31394" type="Node" parent="PlayerInventory/CtrlInventory/Inventory" index="0"]

@@ -17,8 +17,17 @@ json_data = "[
         \"name\": \"Bronze Dagger\"
     },
     {
+        \"id\": \"rock\",
+        \"image\": \"res://assets/sprites/items/rock.png\",
+        \"name\": \"Rock\"
+    },
+    {
         \"id\": \"item2\",
         \"image\": \"res://images/item_scroll_blue.png\",
         \"name\": \"item 2\"
     }
-]"
+]
+
+
+
+"

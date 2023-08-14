@@ -7,6 +7,7 @@ extends CharacterBody2D
 @onready var last_vector = Vector2.ZERO;
 @onready var animation
 @onready var mining = false
+@onready var mining_target = null
 
 @onready var height = ProjectSettings.get_setting("display/window/size/viewport_height");
 @onready var width = ProjectSettings.get_setting("display/window/size/viewport_width");
@@ -21,6 +22,7 @@ extends CharacterBody2D
 
 signal pick_up_item
 signal dropped_item
+signal mined_object (mining_target)
 
 func _ready():
 	pass;
@@ -31,7 +33,7 @@ func _input(event):
 		
 func drop_item(last_vector):
 	emit_signal("dropped_item", last_vector)
-
+	
 func _process(delta):
 	input_vector = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()
 	
@@ -49,7 +51,7 @@ func _process(delta):
 		if not mining:
 			animation = "walk_" + str(returned_direction(input_vector))
 			animated_sprite_2d.play(animation);
-		area_hitbox.position = input_vector * 12;
+			area_hitbox.position = input_vector * 12;
 	elif Input.is_action_just_pressed("ui_accept"):
 		# mining action
 		if not mining:
@@ -57,9 +59,14 @@ func _process(delta):
 			area_hitbox.monitoring = true;
 			animation = "mine_" + str(last_direction)
 			animated_sprite_2d.play(animation);
-			await get_tree().create_timer(0.85).timeout;
+			await get_tree().create_timer(0.1).timeout;
+			emit_signal("mined_object", mining_target)
+			await get_tree().create_timer(0.75).timeout;
 			mining = false;
 			area_hitbox.monitoring = false;
+			mining_target = null;
+			emit_signal("mined_object", mining_target)
+			
 	else:
 		if not mining:
 			animation = "idle_" + str(last_direction)
@@ -90,3 +97,8 @@ func returned_direction(vector: Vector2):
 
 func _on_area_pickup_area_entered(area):
 	emit_signal("pick_up_item", area);
+
+func _on_area_hitbox_body_entered(body):
+	if body:
+		mining_target = body.name;
+		

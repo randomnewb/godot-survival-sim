@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://dai8qmjra51qp"]
+[gd_scene load_steps=5 format=3 uid="uid://dai8qmjra51qp"]
 
 [ext_resource type="Texture2D" uid="uid://b251ay40t3nb5" path="res://assets/sprites/items/bronze_dagger.png" id="1_3fyrf"]
+[ext_resource type="Script" path="res://objects/bronze_dagger.gd" id="1_g7lrm"]
+[ext_resource type="PackedScene" uid="uid://cy4h5bj4nbmg8" path="res://objects/pickup_zone.tscn" id="3_1uudq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vpmt4"]
 radius = 5.09902
 
 [node name="bronze_dagger" type="Area2D"]
+script = ExtResource("1_g7lrm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
@@ -13,3 +16,8 @@ texture = ExtResource("1_3fyrf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_vpmt4")
+
+[node name="PickupZone" parent="." instance=ExtResource("3_1uudq")]
+
+[connection signal="body_entered" from="PickupZone" to="." method="_on_pickup_zone_body_entered"]
+[connection signal="body_exited" from="PickupZone" to="." method="_on_pickup_zone_body_exited"]
