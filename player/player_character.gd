@@ -15,22 +15,38 @@ extends CharacterBody2D
 @onready var player_inventory = preload("res://inventories/player_inventory.tscn")
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
-
 @onready var area_hitbox = $AreaHitbox
+@onready var health_label = $HealthControl/StatLabel
+@onready var health_bar = $HealthControl/StatBar
+
 
 @onready var operating_system = OS.get_name()
 
 signal pick_up_item
 signal dropped_item
 signal mined_object (mining_target)
+signal health_updated(new_value)
+
+@export var health_regen: float = 1.0;
+@export var max_health: float = 100.0;
+@export var health: float = 100.0:
+	get:
+		return health;
+	set(value):
+		health = clamp(value, 0, 100);
+		health_label.text = "Health: " + str(health) + "/" + str(max_health)
+		health_bar.min_value = 0;
+		health_bar.max_value = max_health;
+		health_bar.value = health;
+		emit_signal("health_updated", health)
 
 func _ready():
-	pass;
+	health = 1.0;
 
 func _input(event):
 	if event.is_action_pressed("drop_item"):
 		drop_item(last_vector);
-		
+
 func drop_item(last_vector):
 	emit_signal("dropped_item", last_vector)
 	
@@ -83,6 +99,8 @@ func _process(delta):
 	if not mining:
 		move_and_collide(input_vector * speed * delta);
 
+	
+
 func returned_direction(vector: Vector2):
 	if abs(vector.x) > abs(vector.y):
 		if vector.x < 0.0:
@@ -102,3 +120,5 @@ func _on_area_hitbox_body_entered(body):
 	if body:
 		mining_target = body.name;
 		
+func _on_regen_timer_timeout():
+	health += health_regen;

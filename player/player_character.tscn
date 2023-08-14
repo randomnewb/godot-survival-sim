@@ -1,9 +1,10 @@
-[gd_scene load_steps=61 format=3 uid="uid://cgcppww0iyw3a"]
+[gd_scene load_steps=64 format=3 uid="uid://cgcppww0iyw3a"]
 
 [ext_resource type="Script" path="res://player/player_character.gd" id="1_ng1wn"]
 [ext_resource type="Texture2D" uid="uid://bkgnc5f5f0tw1" path="res://assets/sprites/characters/Swashbuckler_idle.png" id="2_23s0y"]
 [ext_resource type="Texture2D" uid="uid://beh0rshb0ugqs" path="res://assets/sprites/characters/Swashbuckler_walk.png" id="3_2dv4v"]
 [ext_resource type="Texture2D" uid="uid://dexuu0sd2e0u8" path="res://assets/sprites/characters/Swashbuckler_mining.png" id="3_vleeh"]
+[ext_resource type="PackedScene" uid="uid://df5iryuyceu62" path="res://ui/health_control.tscn" id="5_nuvev"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q5pjp"]
 atlas = ExtResource("2_23s0y")
@@ -443,6 +444,12 @@ radius = 8.0
 radius = 9.0
 height = 18.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jkk4x"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l8pya"]
+bg_color = Color(0.980392, 0, 0, 1)
+
 [node name="PlayerCharacter" type="CharacterBody2D"]
 collision_mask = 6
 script = ExtResource("1_ng1wn")
@@ -472,5 +479,22 @@ monitoring = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaHitbox"]
 shape = SubResource("CapsuleShape2D_mlxam")
 
+[node name="HealthControl" parent="." instance=ExtResource("5_nuvev")]
+offset_left = -24.0
+offset_top = 11.0
+offset_right = -24.0
+offset_bottom = 11.0
+scale = Vector2(0.15, 0.15)
+
+[node name="StatBar" parent="HealthControl" index="0"]
+theme_override_styles/background = SubResource("StyleBoxFlat_jkk4x")
+theme_override_styles/fill = SubResource("StyleBoxFlat_l8pya")
+
+[node name="RegenTimer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="area_entered" from="AreaPickup" to="." method="_on_area_pickup_area_entered"]
 [connection signal="body_entered" from="AreaHitbox" to="." method="_on_area_hitbox_body_entered"]
+[connection signal="timeout" from="RegenTimer" to="." method="_on_regen_timer_timeout"]
+
+[editable path="HealthControl"]

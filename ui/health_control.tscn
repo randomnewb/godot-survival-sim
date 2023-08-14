@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://df5iryuyceu62"]
+
+[ext_resource type="PackedScene" uid="uid://dgom2wunhkfvk" path="res://ui/bar_control.tscn" id="1_mjvp0"]
+
+[node name="HealthControl" instance=ExtResource("1_mjvp0")]
+
+[node name="StatLabel" parent="." index="1"]
+text = "Health: 0/100"

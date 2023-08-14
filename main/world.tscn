@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bj63f2r1w3da8"]
+[gd_scene load_steps=7 format=3 uid="uid://bj63f2r1w3da8"]
 
 [ext_resource type="Script" path="res://main/world.gd" id="1_eyapg"]
 [ext_resource type="PackedScene" uid="uid://b4vuyuosxri4b" path="res://inventories/player_inventory.tscn" id="3_5sh5d"]
 [ext_resource type="Script" path="res://addons/gloot/inventory_item.gd" id="4_k2esd"]
 [ext_resource type="Resource" uid="uid://ecpdoevgwfr" path="res://data/main_items.tres" id="5_v5xo5"]
+[ext_resource type="PackedScene" uid="uid://t2nstvywwuov" path="res://entities/lizard_folk.tscn" id="6_8cbgk"]
 [ext_resource type="PackedScene" uid="uid://c0kddhynfuah1" path="res://environment/rock.tscn" id="6_q00wq"]
 
 [node name="World" type="Node"]
@@ -44,5 +45,8 @@ position = Vector2(278, 99)
 
 [node name="Rock2" parent="." instance=ExtResource("6_q00wq")]
 position = Vector2(205, 124)
+
+[node name="LizardFolk" parent="." instance=ExtResource("6_8cbgk")]
+position = Vector2(191, 84)
 
 [editable path="PlayerInventory"]
