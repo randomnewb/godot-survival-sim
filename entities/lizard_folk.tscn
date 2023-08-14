@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://t2nstvywwuov"]
+
+[ext_resource type="PackedScene" uid="uid://cjxy8j08p8gcl" path="res://entities/npc_template.tscn" id="1_6rhir"]
+[ext_resource type="Texture2D" uid="uid://buy4nlxrsfb0w" path="res://assets/sprites/entities/Lizardfolk_idle.png" id="2_5vbwg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kg4ij"]
+atlas = ExtResource("2_5vbwg")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3tui7"]
+atlas = ExtResource("2_5vbwg")
+region = Rect2(16, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wi41f"]
+atlas = ExtResource("2_5vbwg")
+region = Rect2(32, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5x138"]
+atlas = ExtResource("2_5vbwg")
+region = Rect2(48, 0, 16, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dh12q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kg4ij")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3tui7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wi41f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5x138")
+}],
+"loop": true,
+"name": &"idle_down",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fhpa5"]
+radius = 4.0
+height = 12.0
+
+[node name="LizardFolk" instance=ExtResource("1_6rhir")]
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_dh12q")
+animation = &"idle_down"
+frame_progress = 0.176751
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, 7)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_fhpa5")
