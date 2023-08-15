@@ -2,6 +2,7 @@ extends State
 class_name Enemy_Idle
 
 @export var enemy: CharacterBody2D
+var player: CharacterBody2D
 
 var idle_time: float
 var wander_chance: float
@@ -24,3 +25,12 @@ func update(delta: float):
 func physics_update(delta: float):
 	if enemy:
 		enemy.velocity = Vector2.ZERO;
+
+	if player != null:
+		var direction = player.global_position - enemy.global_position
+
+		if direction.length() < 50:
+			transitioned.emit(self, "Enemy_Follow");
+
+	else:
+		player = get_tree().get_first_node_in_group("Player")
