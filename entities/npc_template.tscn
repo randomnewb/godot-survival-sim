@@ -1,18 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://cjxy8j08p8gcl"]
+[gd_scene load_steps=5 format=3 uid="uid://cjxy8j08p8gcl"]
 
-[ext_resource type="Script" path="res://NPCTemplate.gd" id="1_6p0cn"]
+[ext_resource type="Script" path="res://entities/NPCTemplate.gd" id="1_i43in"]
+[ext_resource type="PackedScene" uid="uid://b4p7w41c7bdro" path="res://entities/components/area_hitbox.tscn" id="2_1w1cp"]
+[ext_resource type="PackedScene" uid="uid://cvum82qpwx1su" path="res://entities/components/area_hurtbox.tscn" id="3_2o2vb"]
+[ext_resource type="PackedScene" uid="uid://ddowk2girid7l" path="res://entities/components/area_pickup.tscn" id="4_fgqm3"]
 
 [node name="NPCTemplate" type="CharacterBody2D"]
-script = ExtResource("1_6p0cn")
+script = ExtResource("1_i43in")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
-[node name="AreaHitbox" type="Area2D" parent="."]
+[node name="AreaHitbox" parent="." instance=ExtResource("2_1w1cp")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaHitbox"]
+[node name="AreaHurtbox" parent="." instance=ExtResource("3_2o2vb")]
 
-[node name="AreaHurtbox" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaHurtbox"]
+[node name="AreaPickup" parent="." instance=ExtResource("4_fgqm3")]

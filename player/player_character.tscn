@@ -1,10 +1,12 @@
-[gd_scene load_steps=64 format=3 uid="uid://cgcppww0iyw3a"]
+[gd_scene load_steps=67 format=3 uid="uid://cgcppww0iyw3a"]
 
 [ext_resource type="Script" path="res://player/player_character.gd" id="1_ng1wn"]
 [ext_resource type="Texture2D" uid="uid://bkgnc5f5f0tw1" path="res://assets/sprites/characters/Swashbuckler_idle.png" id="2_23s0y"]
 [ext_resource type="Texture2D" uid="uid://beh0rshb0ugqs" path="res://assets/sprites/characters/Swashbuckler_walk.png" id="3_2dv4v"]
 [ext_resource type="Texture2D" uid="uid://dexuu0sd2e0u8" path="res://assets/sprites/characters/Swashbuckler_mining.png" id="3_vleeh"]
 [ext_resource type="PackedScene" uid="uid://df5iryuyceu62" path="res://ui/health_control.tscn" id="5_nuvev"]
+[ext_resource type="PackedScene" uid="uid://cvum82qpwx1su" path="res://entities/components/area_hurtbox.tscn" id="6_qk2q2"]
+[ext_resource type="PackedScene" uid="uid://b4p7w41c7bdro" path="res://entities/components/area_hitbox.tscn" id="7_w7rfm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q5pjp"]
 atlas = ExtResource("2_23s0y")
@@ -437,20 +439,24 @@ animations = [{
 radius = 5.0
 height = 10.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_by03w"]
-radius = 8.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mlxam"]
-radius = 9.0
-height = 18.0
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jkk4x"]
 bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l8pya"]
 bg_color = Color(0.980392, 0, 0, 1)
 
-[node name="PlayerCharacter" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_by03w"]
+radius = 8.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a0qom"]
+radius = 5.0
+height = 12.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e4ong"]
+radius = 9.0
+height = 18.0
+
+[node name="PlayerCharacter" type="CharacterBody2D" groups=["Player"]]
 collision_mask = 6
 script = ExtResource("1_ng1wn")
 
@@ -462,22 +468,6 @@ autoplay = "idle_down"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3)
 shape = SubResource("CapsuleShape2D_oiobp")
-
-[node name="AreaPickup" type="Area2D" parent="."]
-collision_layer = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaPickup"]
-position = Vector2(0, 4)
-shape = SubResource("CircleShape2D_by03w")
-
-[node name="AreaHitbox" type="Area2D" parent="."]
-position = Vector2(0, -13)
-collision_layer = 0
-collision_mask = 4
-monitoring = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaHitbox"]
-shape = SubResource("CapsuleShape2D_mlxam")
 
 [node name="HealthControl" parent="." instance=ExtResource("5_nuvev")]
 offset_left = -24.0
@@ -493,8 +483,33 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_l8pya")
 [node name="RegenTimer" type="Timer" parent="."]
 autostart = true
 
-[connection signal="area_entered" from="AreaPickup" to="." method="_on_area_pickup_area_entered"]
-[connection signal="body_entered" from="AreaHitbox" to="." method="_on_area_hitbox_body_entered"]
+[node name="AreaPickup" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaPickup"]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_by03w")
+
+[node name="AreaHurtbox" parent="." instance=ExtResource("6_qk2q2")]
+collision_mask = 0
+
+[node name="CollisionShape2D" parent="AreaHurtbox" index="0"]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_a0qom")
+
+[node name="AreaLifeSkillsHitbox" parent="." instance=ExtResource("7_w7rfm")]
+position = Vector2(0, -13)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" parent="AreaLifeSkillsHitbox" index="0"]
+shape = SubResource("CapsuleShape2D_e4ong")
+
 [connection signal="timeout" from="RegenTimer" to="." method="_on_regen_timer_timeout"]
+[connection signal="area_entered" from="AreaPickup" to="." method="_on_area_pickup_area_entered"]
+[connection signal="body_entered" from="AreaLifeSkillsHitbox" to="." method="_on_area_life_skills_hitbox_body_entered"]
 
 [editable path="HealthControl"]
+[editable path="AreaHurtbox"]
+[editable path="AreaLifeSkillsHitbox"]

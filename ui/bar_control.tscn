@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dgom2wunhkfvk"]
 
-[ext_resource type="Script" path="res://BarControl.gd" id="1_jb2ns"]
+[ext_resource type="Script" path="res://ui/BarControl.gd" id="1_jb2ns"]
 
 [node name="BarControl" type="Control"]
 layout_mode = 3

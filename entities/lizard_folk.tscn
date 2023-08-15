@@ -1,8 +1,12 @@
-[gd_scene load_steps=40 format=3 uid="uid://t2nstvywwuov"]
+[gd_scene load_steps=45 format=3 uid="uid://t2nstvywwuov"]
 
 [ext_resource type="PackedScene" uid="uid://cjxy8j08p8gcl" path="res://entities/npc_template.tscn" id="1_6rhir"]
 [ext_resource type="Texture2D" uid="uid://buy4nlxrsfb0w" path="res://assets/sprites/entities/Lizardfolk_idle.png" id="2_5vbwg"]
 [ext_resource type="Texture2D" uid="uid://dolq5r62jaxh5" path="res://assets/sprites/entities/Lizardfolk_walk.png" id="3_lcvao"]
+[ext_resource type="Script" path="res://entities/StateMachine.gd" id="4_tudpd"]
+[ext_resource type="Script" path="res://states/enemy_wander.gd" id="5_dime7"]
+[ext_resource type="Script" path="res://states/enemy_idle.gd" id="5_r7nnf"]
+[ext_resource type="Script" path="res://states/enemy_follow.gd" id="6_4q237"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kg4ij"]
 atlas = ExtResource("2_5vbwg")
@@ -282,6 +286,10 @@ radius = 6.08276
 radius = 6.0
 height = 22.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iucpo"]
+radius = 6.0
+height = 12.0
+
 [node name="LizardFolk" instance=ExtResource("1_6rhir")]
 collision_layer = 2
 collision_mask = 4
@@ -311,3 +319,32 @@ collision_mask = 0
 position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_qgrj1")
 debug_color = Color(0.760784, 0.180392, 1, 0.427451)
+
+[node name="AreaPickup" parent="." index="4"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" parent="AreaPickup" index="0"]
+position = Vector2(0, 4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_iucpo")
+
+[node name="StateMachine" type="Node" parent="." index="5" node_paths=PackedStringArray("initial_state")]
+script = ExtResource("4_tudpd")
+initial_state = NodePath("Enemy_Follow")
+
+[node name="Enemy_Wander" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("enemy")]
+script = ExtResource("5_dime7")
+enemy = NodePath("../..")
+
+[node name="Enemy_Idle" type="Node" parent="StateMachine" index="1" node_paths=PackedStringArray("enemy")]
+script = ExtResource("5_r7nnf")
+enemy = NodePath("../..")
+
+[node name="Enemy_Follow" type="Node" parent="StateMachine" index="2" node_paths=PackedStringArray("enemy")]
+script = ExtResource("6_4q237")
+enemy = NodePath("../..")
+
+[editable path="AreaHitbox"]
+[editable path="AreaHurtbox"]
+[editable path="AreaPickup"]

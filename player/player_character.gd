@@ -15,10 +15,10 @@ extends CharacterBody2D
 @onready var player_inventory = preload("res://inventories/player_inventory.tscn")
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
-@onready var area_hitbox = $AreaHitbox
+@onready var area_life_skills_hitbox = $AreaLifeSkillsHitbox
+
 @onready var health_label = $HealthControl/StatLabel
 @onready var health_bar = $HealthControl/StatBar
-
 
 @onready var operating_system = OS.get_name()
 
@@ -49,10 +49,10 @@ func _input(event):
 
 func drop_item(last_vector):
 	emit_signal("dropped_item", last_vector)
-	
+
 func _process(delta):
 	input_vector = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()
-	
+
 #	print(operating_system)
 	if operating_system == "Android" or operating_system == "iOS":
 		if Input.is_action_pressed("tap_left_mouse"):
@@ -67,19 +67,19 @@ func _process(delta):
 		if not mining:
 			animation = "walk_" + str(returned_direction(input_vector))
 			animated_sprite_2d.play(animation);
-			area_hitbox.position = input_vector * 12;
+			area_life_skills_hitbox.position = input_vector * 12;
 	elif Input.is_action_just_pressed("ui_accept"):
 		# mining action
 		if not mining:
 			mining = true;
-			area_hitbox.monitoring = true;
+			area_life_skills_hitbox.monitoring = true;
 			animation = "mine_" + str(last_direction)
 			animated_sprite_2d.play(animation);
 			await get_tree().create_timer(0.1).timeout;
 			emit_signal("mined_object", mining_target)
 			await get_tree().create_timer(0.75).timeout;
 			mining = false;
-			area_hitbox.monitoring = false;
+			area_life_skills_hitbox.monitoring = false;
 			mining_target = null;
 			emit_signal("mined_object", mining_target)
 			
@@ -115,9 +115,12 @@ func returned_direction(vector: Vector2):
 func _on_area_pickup_area_entered(area):
 	emit_signal("pick_up_item", area);
 
-func _on_area_hitbox_body_entered(body):
+func _on_area_life_skills_hitbox_body_entered(body):
 	if body:
 		mining_target = body.name;
 
 func _on_regen_timer_timeout():
 	health += health_regen;
+
+
+
