@@ -4,7 +4,7 @@ extends Node
 @onready var ctrl_inventory = $PlayerInventory/CtrlInventory
 @onready var player_inventory_parent = $PlayerInventory
 
-var last_vector = "down"
+#var last_vector = "down"
 var inventory_visible = true;
 
 #signal item_removed(prototype_id)
@@ -22,7 +22,7 @@ func _ready():
 #	Adding item to player inventory example
 	player_inventory.create_and_add_item("bronze_dagger");
 
-func _process(delta):
+func _process(_delta):
 	pass;
 
 func _on_dropped_item(last_vector):

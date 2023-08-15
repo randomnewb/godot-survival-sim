@@ -22,7 +22,7 @@ func update(delta: float):
 			transitioned.emit(self, "Enemy_Wander");
 		randomize_idle()
 
-func physics_update(delta: float):
+func physics_update(_delta: float):
 	if enemy:
 		enemy.velocity = Vector2.ZERO;
 

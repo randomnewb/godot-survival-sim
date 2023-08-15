@@ -42,7 +42,7 @@ func spawn_interactable(item_to_spawn, location, position, last_vector):
 
 func spawn_player():
 	var world = get_tree().current_scene;
-	var PLAYER_SCENE = preload("res://player/player_character.tscn")
+	var PLAYER_SCENE = preload("res://entities/player/player_character.tscn")
 	var player = PLAYER_SCENE.instantiate();
 	world.add_child.call_deferred(player);
 	player.position = player.position + Vector2(100, 100);

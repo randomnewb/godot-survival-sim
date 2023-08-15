@@ -45,10 +45,7 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("drop_item"):
-		drop_item(last_vector);
-
-func drop_item(last_vector):
-	emit_signal("dropped_item", last_vector)
+		emit_signal("dropped_item", last_vector)
 
 func _process(delta):
 	input_vector = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()

@@ -4,7 +4,7 @@ extends CharacterBody2D
 
 var last_direction = "up";
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	move_and_slide();
 
 	if velocity.length() > 0:

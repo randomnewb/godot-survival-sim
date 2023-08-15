@@ -12,5 +12,5 @@ func _on_pickup_zone_body_entered(body):
 	body_node = body;
 	player_closeby = true;
 	
-func _on_pickup_zone_body_exited(body):
+func _on_pickup_zone_body_exited(_body):
 	player_closeby = false;
