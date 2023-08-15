@@ -96,10 +96,9 @@ func _process(delta):
 #	var ray_collide = ray_cast_2d.get_collider()
 #	if ray_collide:
 #		print("ray: ",ray_collide)
+
 	if not mining:
 		move_and_collide(input_vector * speed * delta);
-
-	
 
 func returned_direction(vector: Vector2):
 	if abs(vector.x) > abs(vector.y):
@@ -119,6 +118,6 @@ func _on_area_pickup_area_entered(area):
 func _on_area_hitbox_body_entered(body):
 	if body:
 		mining_target = body.name;
-		
+
 func _on_regen_timer_timeout():
 	health += health_regen;
