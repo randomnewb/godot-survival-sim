@@ -18,9 +18,6 @@ extends CharacterBody2D
 @onready var area_life_skills_hitbox = $AreaLifeSkillsHitbox
 @onready var area_weapon_hitbox = $AreaWeaponHitbox
 
-@onready var health_label = $HealthControl/StatLabel
-@onready var health_bar = $HealthControl/StatBar
-
 @onready var operating_system = OS.get_name()
 
 signal pick_up_item
@@ -28,22 +25,6 @@ signal dropped_item
 signal mined_object (mining_target)
 signal health_updated(new_value)
 signal attacked
-
-@export var health_regen: float = 1.0;
-@export var max_health: float = 100.0;
-@export var health: float = 100.0:
-	get:
-		return health;
-	set(value):
-		health = clamp(value, 0, 100);
-		health_label.text = "Health: " + str(health) + "/" + str(max_health)
-		health_bar.min_value = 0;
-		health_bar.max_value = max_health;
-		health_bar.value = health;
-		emit_signal("health_updated", health)
-
-func _ready():
-	health = 1.0;
 
 func _input(event):
 	if event.is_action_pressed("drop_item"):
@@ -130,5 +111,4 @@ func _on_area_life_skills_hitbox_body_entered(body):
 	if body:
 		mining_target = body.name;
 
-func _on_regen_timer_timeout():
-	health += health_regen;
+

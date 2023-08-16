@@ -47,6 +47,6 @@ position = Vector2(278, 99)
 position = Vector2(205, 124)
 
 [node name="LizardFolk" parent="." instance=ExtResource("6_60r7k")]
-position = Vector2(91, 62)
+position = Vector2(219, 65)
 
 [editable path="PlayerInventory"]

@@ -12,5 +12,3 @@ func damage(attack: Attack):
 	health_component.taking_damage = true
 
 	parent.velocity = (parent.global_position - attack.attack_position).normalized() * attack.knockback_force
-#	await get_tree().create_timer(1.0).timeout;
-#	health_component.taking_damage = false;

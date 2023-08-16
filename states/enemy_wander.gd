@@ -2,7 +2,7 @@ extends State
 class_name EnemyWander
 
 @export var enemy: CharacterBody2D
-@export var move_speed := 10.0
+@export var move_speed := 0.25
 var player: CharacterBody2D
 
 var move_direction: Vector2

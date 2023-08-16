@@ -1,27 +1,22 @@
 extends State
-class_name EnemyFollow
+class_name EnemyAttack
 
 @export var enemy: CharacterBody2D;
-@export var move_speed := 0.25
 var player: CharacterBody2D
+
+signal attacked
 
 func enter():
 	player = get_tree().get_first_node_in_group("Player")
+	emit_signal("attacked")
 
 func physics_update(_delta: float):
+#	Bug: Enemy only attacks once
+	
 	if player != null:
 		var direction = player.global_position - enemy.global_position
-	
-		if direction.length() > 10:
-			enemy.velocity = direction.normalized() * move_speed
-			
-			if direction.length() < 20:
-				transitioned.emit(self, "EnemyAttack");
-			
-		else:
-			enemy.velocity = Vector2();
-			
-		if direction.length() > 100:
+
+		if direction.length() > 50:
 			transitioned.emit(self, "EnemyWander");
 			
 	else:

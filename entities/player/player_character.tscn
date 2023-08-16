@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=3 uid="uid://cgcppww0iyw3a"]
+[gd_scene load_steps=88 format=3 uid="uid://cgcppww0iyw3a"]
 
 [ext_resource type="Script" path="res://entities/player/player_character.gd" id="1_ks168"]
 [ext_resource type="Texture2D" uid="uid://bbra1im6h500w" path="res://assets/sprites/characters/Swashbuckler_melee.png" id="2_2ro1s"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://cvum82qpwx1su" path="res://entities/components/hurtbox_component.tscn" id="6_cdk44"]
 [ext_resource type="PackedScene" uid="uid://b4p7w41c7bdro" path="res://entities/components/hitbox_component.tscn" id="7_j6qro"]
 [ext_resource type="Script" path="res://entities/components/weapon.gd" id="9_pn4gy"]
+[ext_resource type="PackedScene" uid="uid://b583iycy1ndj8" path="res://entities/components/health_component.tscn" id="10_t6kef"]
+[ext_resource type="Script" path="res://entities/components/health_component_player.gd" id="11_g8ax7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6sh5k"]
 atlas = ExtResource("2_2ro1s")
@@ -647,18 +649,21 @@ shape = SubResource("CapsuleShape2D_e4ong")
 [node name="AreaWeaponHitbox" parent="." instance=ExtResource("7_j6qro")]
 position = Vector2(0, -13)
 collision_layer = 0
-collision_mask = 2
+collision_mask = 16
 monitoring = false
 script = ExtResource("9_pn4gy")
 attack_damage = 25.0
-knockback_force = 1000.0
+knockback_force = 2.5
 stun_time = 1.5
 
 [node name="CollisionShape2D" parent="AreaWeaponHitbox" index="0"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_ayejg")
 
-[connection signal="timeout" from="RegenTimer" to="." method="_on_regen_timer_timeout"]
+[node name="HealthComponent" parent="." instance=ExtResource("10_t6kef")]
+script = ExtResource("11_g8ax7")
+
+[connection signal="timeout" from="RegenTimer" to="HealthComponent" method="_on_regen_timer_timeout"]
 [connection signal="area_entered" from="AreaPickup" to="." method="_on_area_pickup_area_entered"]
 [connection signal="body_entered" from="AreaLifeSkillsHitbox" to="." method="_on_area_life_skills_hitbox_body_entered"]
 [connection signal="area_entered" from="AreaWeaponHitbox" to="AreaWeaponHitbox" method="_on_area_entered"]

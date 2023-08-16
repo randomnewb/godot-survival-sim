@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dh2qsusjp1lrw"]
+
+[ext_resource type="Script" path="res://states/enemy_attack.gd" id="1_s0rpc"]
+
+[node name="EnemyAttack" type="Node"]
+script = ExtResource("1_s0rpc")

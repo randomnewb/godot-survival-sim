@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c1t0g4drcdvc8"]
+[gd_scene load_steps=15 format=3 uid="uid://c1t0g4drcdvc8"]
 
 [ext_resource type="PackedScene" uid="uid://b8f0525h0nbcc" path="res://entities/npcs/npc_template.tscn" id="1_mi6um"]
 [ext_resource type="Script" path="res://entities/npcs/lizard_folk.gd" id="2_0pi0v"]
@@ -6,7 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://25nrwtgtyk0t" path="res://states/enemy_wander.tscn" id="3_iulgi"]
 [ext_resource type="Script" path="res://entities/components/hurtbox_component.gd" id="4_2agxx"]
 [ext_resource type="PackedScene" uid="uid://dg0lj5hsoqr1m" path="res://states/enemy_idle.tscn" id="4_ipxq3"]
+[ext_resource type="Script" path="res://entities/components/health_component_lizardfolk.gd" id="4_tpkqq"]
 [ext_resource type="PackedScene" uid="uid://bav4o5nc8egpp" path="res://states/enemy_follow.tscn" id="5_el802"]
+[ext_resource type="PackedScene" uid="uid://df5iryuyceu62" path="res://ui/health_control.tscn" id="8_hhedr"]
+[ext_resource type="PackedScene" uid="uid://dh2qsusjp1lrw" path="res://states/enemy_attack.tscn" id="9_186ac"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nlkex"]
 radius = 4.0
@@ -16,6 +19,12 @@ height = 12.0
 radius = 5.0
 height = 14.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mek24"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_emg6j"]
+bg_color = Color(0.796078, 0, 0, 1)
+
 [node name="LizardFolk" instance=ExtResource("1_mi6um")]
 collision_layer = 2
 collision_mask = 0
@@ -23,15 +32,22 @@ script = ExtResource("2_0pi0v")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = ExtResource("2_qjpm4")
-animation = &"idle_down"
+animation = &"attack_down"
 
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(0, 7)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_nlkex")
 
+[node name="HealthComponent" parent="." index="2"]
+script = ExtResource("4_tpkqq")
+
+[node name="HitboxComponent" parent="." index="3"]
+collision_layer = 0
+collision_mask = 8
+
 [node name="HurtboxComponent" parent="." index="4"]
-collision_layer = 2
+collision_layer = 16
 collision_mask = 0
 script = ExtResource("4_2agxx")
 
@@ -51,4 +67,28 @@ enemy = NodePath("../..")
 [node name="EnemyFollow" parent="StateMachine" index="2" node_paths=PackedStringArray("enemy") instance=ExtResource("5_el802")]
 enemy = NodePath("../..")
 
+[node name="EnemyAttack" parent="StateMachine" index="3" node_paths=PackedStringArray("enemy") instance=ExtResource("9_186ac")]
+enemy = NodePath("../..")
+
+[node name="HealthControl" parent="." index="6" instance=ExtResource("8_hhedr")]
+offset_left = -8.0
+offset_top = 12.0
+offset_right = -8.0
+offset_bottom = 12.0
+scale = Vector2(0.05, 0.05)
+
+[node name="StatBar" parent="HealthControl" index="0"]
+theme_override_styles/background = SubResource("StyleBoxFlat_mek24")
+theme_override_styles/fill = SubResource("StyleBoxFlat_emg6j")
+
+[node name="StatLabel" parent="HealthControl" index="1"]
+visible = false
+
+[node name="RegenTimer" type="Timer" parent="." index="7"]
+autostart = true
+
+[connection signal="attacked" from="StateMachine/EnemyAttack" to="." method="_on_enemy_attack_attacked"]
+[connection signal="timeout" from="RegenTimer" to="HealthComponent" method="_on_regen_timer_timeout"]
+
 [editable path="HurtboxComponent"]
+[editable path="HealthControl"]
