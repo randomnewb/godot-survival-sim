@@ -1,5 +1,5 @@
 extends State
-class_name Enemy_Follow
+class_name EnemyFollow
 
 @export var enemy: CharacterBody2D;
 @export var move_speed := 20.0
@@ -18,7 +18,7 @@ func physics_update(_delta: float):
 			enemy.velocity = Vector2();
 			
 		if direction.length() > 100:
-			transitioned.emit(self, "Enemy_Wander");
+			transitioned.emit(self, "EnemyWander");
 			
 	else:
 		player = get_tree().get_first_node_in_group("Player")

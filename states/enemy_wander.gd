@@ -1,5 +1,5 @@
 extends State
-class_name Enemy_Wander
+class_name EnemyWander
 
 @export var enemy: CharacterBody2D
 @export var move_speed := 10.0
@@ -22,7 +22,7 @@ func update(delta: float):
 		wander_time -= delta
 	else:
 		if idle_chance > 2.5:
-			transitioned.emit(self, "Enemy_Idle");
+			transitioned.emit(self, "EnemyIdle");
 		randomize_wander()
 
 func physics_update(_delta: float):
@@ -33,7 +33,7 @@ func physics_update(_delta: float):
 		var direction = player.global_position - enemy.global_position
 
 		if direction.length() < 50:
-			transitioned.emit(self, "Enemy_Follow");
+			transitioned.emit(self, "EnemyFollow");
 
 	else:
 		player = get_tree().get_first_node_in_group("Player")

@@ -36,5 +36,4 @@ func _on_child_transition(state, new_state_name):
 	
 	current_state = new_state;
 	
-	print(current_state)
 	new_state.enter();

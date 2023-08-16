@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=3 uid="uid://cgcppww0iyw3a"]
+[gd_scene load_steps=84 format=3 uid="uid://cgcppww0iyw3a"]
 
 [ext_resource type="Script" path="res://entities/player/player_character.gd" id="1_ks168"]
 [ext_resource type="Texture2D" uid="uid://bbra1im6h500w" path="res://assets/sprites/characters/Swashbuckler_melee.png" id="2_2ro1s"]
@@ -6,9 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://dexuu0sd2e0u8" path="res://assets/sprites/characters/Swashbuckler_mining.png" id="3_0yy6c"]
 [ext_resource type="Texture2D" uid="uid://beh0rshb0ugqs" path="res://assets/sprites/characters/Swashbuckler_walk.png" id="4_onhi7"]
 [ext_resource type="PackedScene" uid="uid://df5iryuyceu62" path="res://ui/health_control.tscn" id="5_fbrlq"]
-[ext_resource type="PackedScene" uid="uid://cvum82qpwx1su" path="res://entities/components/hurtbox_component.tscn" id="6_cdk44"]
-[ext_resource type="PackedScene" uid="uid://b4p7w41c7bdro" path="res://entities/components/hitbox_component.tscn" id="7_j6qro"]
-[ext_resource type="Script" path="res://entities/components/weapon.gd" id="9_pn4gy"]
+[ext_resource type="PackedScene" uid="uid://cvum82qpwx1su" path="res://entities/components/area_hurtbox.tscn" id="6_cdk44"]
+[ext_resource type="PackedScene" uid="uid://b4p7w41c7bdro" path="res://entities/components/area_hitbox.tscn" id="7_j6qro"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6sh5k"]
 atlas = ExtResource("2_2ro1s")
@@ -297,7 +296,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2lj40")
 }],
-"loop": false,
+"loop": true,
 "name": &"attack_down",
 "speed": 5.0
 }, {
@@ -314,7 +313,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ubb4q")
 }],
-"loop": false,
+"loop": true,
 "name": &"attack_left",
 "speed": 5.0
 }, {
@@ -331,7 +330,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_icpq7")
 }],
-"loop": false,
+"loop": true,
 "name": &"attack_right",
 "speed": 5.0
 }, {
@@ -348,7 +347,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_rvk61")
 }],
-"loop": false,
+"loop": true,
 "name": &"attack_up",
 "speed": 5.0
 }, {
@@ -436,7 +435,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_a0h5q")
 }],
-"loop": false,
+"loop": true,
 "name": &"mine_down",
 "speed": 5.0
 }, {
@@ -456,7 +455,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3e4r0")
 }],
-"loop": false,
+"loop": true,
 "name": &"mine_left",
 "speed": 5.0
 }, {
@@ -476,7 +475,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_rda11")
 }],
-"loop": false,
+"loop": true,
 "name": &"mine_right",
 "speed": 5.0
 }, {
@@ -496,7 +495,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_56uph")
 }],
-"loop": false,
+"loop": true,
 "name": &"mine_up",
 "speed": 5.0
 }, {
@@ -590,9 +589,6 @@ height = 12.0
 radius = 9.0
 height = 18.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ayejg"]
-height = 22.0
-
 [node name="PlayerCharacter" type="CharacterBody2D" groups=["Player"]]
 collision_mask = 6
 script = ExtResource("1_ks168")
@@ -639,31 +635,14 @@ shape = SubResource("CapsuleShape2D_a0qom")
 position = Vector2(0, -13)
 collision_layer = 0
 collision_mask = 4
-script = null
 
 [node name="CollisionShape2D" parent="AreaLifeSkillsHitbox" index="0"]
 shape = SubResource("CapsuleShape2D_e4ong")
 
-[node name="AreaWeaponHitbox" parent="." instance=ExtResource("7_j6qro")]
-position = Vector2(0, -13)
-collision_layer = 0
-collision_mask = 2
-monitoring = false
-script = ExtResource("9_pn4gy")
-attack_damage = 25.0
-knockback_force = 1000.0
-stun_time = 1.5
-
-[node name="CollisionShape2D" parent="AreaWeaponHitbox" index="0"]
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_ayejg")
-
 [connection signal="timeout" from="RegenTimer" to="." method="_on_regen_timer_timeout"]
 [connection signal="area_entered" from="AreaPickup" to="." method="_on_area_pickup_area_entered"]
 [connection signal="body_entered" from="AreaLifeSkillsHitbox" to="." method="_on_area_life_skills_hitbox_body_entered"]
-[connection signal="area_entered" from="AreaWeaponHitbox" to="AreaWeaponHitbox" method="_on_area_entered"]
 
 [editable path="HealthControl"]
 [editable path="AreaHurtbox"]
 [editable path="AreaLifeSkillsHitbox"]
-[editable path="AreaWeaponHitbox"]

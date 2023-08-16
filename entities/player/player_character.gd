@@ -6,7 +6,7 @@ extends CharacterBody2D
 @onready var last_direction = "down"
 @onready var last_vector = Vector2.ZERO;
 @onready var animation
-@onready var mining = false
+@onready var acting = false
 @onready var mining_target = null
 
 @onready var height = ProjectSettings.get_setting("display/window/size/viewport_height");
@@ -16,6 +16,7 @@ extends CharacterBody2D
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var area_life_skills_hitbox = $AreaLifeSkillsHitbox
+@onready var area_weapon_hitbox = $AreaWeaponHitbox
 
 @onready var health_label = $HealthControl/StatLabel
 @onready var health_bar = $HealthControl/StatBar
@@ -26,6 +27,7 @@ signal pick_up_item
 signal dropped_item
 signal mined_object (mining_target)
 signal health_updated(new_value)
+signal attacked
 
 @export var health_regen: float = 1.0;
 @export var max_health: float = 100.0;
@@ -61,27 +63,39 @@ func _process(delta):
 	if input_vector != Vector2.ZERO:
 		last_vector = input_vector
 		last_direction = returned_direction(input_vector)
-		if not mining:
+		if not acting:
 			animation = "walk_" + str(returned_direction(input_vector))
 			animated_sprite_2d.play(animation);
 			area_life_skills_hitbox.position = input_vector * 12;
-	elif Input.is_action_just_pressed("ui_accept"):
+			area_weapon_hitbox.position = input_vector * 12
+	elif Input.is_action_just_pressed("action_mine"):
 		# mining action
-		if not mining:
-			mining = true;
+		if not acting:
+			acting = true;
 			area_life_skills_hitbox.monitoring = true;
 			animation = "mine_" + str(last_direction)
 			animated_sprite_2d.play(animation);
 			await get_tree().create_timer(0.1).timeout;
 			emit_signal("mined_object", mining_target)
 			await get_tree().create_timer(0.75).timeout;
-			mining = false;
+			acting = false;
 			area_life_skills_hitbox.monitoring = false;
 			mining_target = null;
 			emit_signal("mined_object", mining_target)
-			
+	elif Input.is_action_just_pressed("action_attack"):
+		if not acting:
+			acting = true;
+			area_weapon_hitbox.monitoring = true;
+			animation = "attack_" + str(last_direction)
+			animated_sprite_2d.play(animation);
+			await get_tree().create_timer(0.1).timeout;
+			emit_signal("attacked")
+			await get_tree().create_timer(0.10).timeout;
+			area_weapon_hitbox.monitoring = false;
+			await get_tree().create_timer(0.60).timeout;
+			acting = false;
 	else:
-		if not mining:
+		if not acting:
 			animation = "idle_" + str(last_direction)
 			animated_sprite_2d.play(animation);
 
@@ -94,7 +108,7 @@ func _process(delta):
 #	if ray_collide:
 #		print("ray: ",ray_collide)
 
-	if not mining:
+	if not acting:
 		move_and_collide(input_vector * speed * delta);
 
 func returned_direction(vector: Vector2):
@@ -118,6 +132,3 @@ func _on_area_life_skills_hitbox_body_entered(body):
 
 func _on_regen_timer_timeout():
 	health += health_regen;
-
-
-
