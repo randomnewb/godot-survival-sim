@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=3 uid="uid://cgcppww0iyw3a"]
+[gd_scene load_steps=89 format=3 uid="uid://cgcppww0iyw3a"]
 
 [ext_resource type="Script" path="res://entities/player/player_character.gd" id="1_ks168"]
 [ext_resource type="Texture2D" uid="uid://bbra1im6h500w" path="res://assets/sprites/characters/Swashbuckler_melee.png" id="2_2ro1s"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://df5iryuyceu62" path="res://ui/health_control.tscn" id="5_fbrlq"]
 [ext_resource type="PackedScene" uid="uid://cvum82qpwx1su" path="res://entities/components/hurtbox_component.tscn" id="6_cdk44"]
 [ext_resource type="PackedScene" uid="uid://b4p7w41c7bdro" path="res://entities/components/hitbox_component.tscn" id="7_j6qro"]
+[ext_resource type="Script" path="res://entities/components/hurtbox_component.gd" id="8_3jja0"]
 [ext_resource type="Script" path="res://entities/components/weapon.gd" id="9_pn4gy"]
 [ext_resource type="PackedScene" uid="uid://b583iycy1ndj8" path="res://entities/components/health_component.tscn" id="10_t6kef"]
 [ext_resource type="Script" path="res://entities/components/health_component_player.gd" id="11_g8ax7"]
@@ -631,7 +632,9 @@ position = Vector2(0, 4)
 shape = SubResource("CircleShape2D_by03w")
 
 [node name="AreaHurtbox" parent="." instance=ExtResource("6_cdk44")]
+collision_layer = 8
 collision_mask = 0
+script = ExtResource("8_3jja0")
 
 [node name="CollisionShape2D" parent="AreaHurtbox" index="0"]
 position = Vector2(0, 1)
