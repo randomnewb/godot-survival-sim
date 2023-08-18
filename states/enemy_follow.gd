@@ -2,7 +2,7 @@ extends State
 class_name EnemyFollow
 
 @export var enemy: CharacterBody2D;
-@export var move_speed := 0.25
+@export var move_speed := 27.0
 var player: CharacterBody2D
 
 func enter():
@@ -15,7 +15,7 @@ func physics_update(_delta: float):
 		if direction.length() > 10:
 			enemy.velocity = direction.normalized() * move_speed
 			
-			if direction.length() < 20:
+			if direction.length() < 25:
 				transitioned.emit(self, "EnemyAttack");
 			
 		else:
