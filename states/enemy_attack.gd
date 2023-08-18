@@ -2,26 +2,20 @@ extends State
 class_name EnemyAttack
 
 @export var enemy: CharacterBody2D;
+@onready var attack_cooldown_timer = $"../../AttackCooldownTimer"
 var player: CharacterBody2D
-
-var finished_attacking: bool = false;
-
 var direction = Vector2.ZERO;
 
-signal attacked(direction)
+signal facing(direction)
 
 func enter():
 	player = get_tree().get_first_node_in_group("Player")
-	emit_signal("attacked", direction)
+	attack_cooldown_timer.start()
 
 func physics_update(_delta: float):
 	if player != null:
 		direction = player.global_position - enemy.global_position
-
-		if finished_attacking == true:
-			finished_attacking = false;
-			emit_signal("attacked", direction)
-
+		emit_signal("facing",direction)
 		if direction.length() > 25:
 			transitioned.emit(self, "EnemyWander");
 			
@@ -33,7 +27,3 @@ func physics_update(_delta: float):
 
 	if player == null:
 		transitioned.emit(self, "EnemyWander");
-
-
-func _on_lizard_folk_attack_finished():
-	finished_attacking = true

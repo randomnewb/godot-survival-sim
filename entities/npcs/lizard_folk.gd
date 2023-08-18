@@ -6,51 +6,42 @@ extends CharacterBody2D
 
 var player: CharacterBody2D
 
-var last_direction = "up";
-var attacking: bool = false;
+var last_direction = "";
+var last_attack_direction = "";
 var attack_direction = Vector2.ZERO;
 
 @onready var state_machine = $StateMachine
 
-signal attack_finished
-
 func _physics_process(_delta):
-
-#	Enemy only attacks once
-
-	if velocity.length() > 0 and not attacking:
-		last_direction = returned_direction(velocity)
-		var animation = "walk_" + str(returned_direction(velocity.normalized()))
-		animated_sprite_2d.play(animation);
-		hitbox_component.position = velocity * 40
-	elif attacking:
-		last_direction = returned_direction(velocity)
-		var animation = "attack_" + str(returned_direction(velocity.normalized()))
-		animated_sprite_2d.play(animation);
-		await get_tree().create_timer(0.80).timeout;
-		attacking = false;
-	else:
-		var animation = "idle_" + str(last_direction)
-		animated_sprite_2d.play(animation);
-
-	move_and_collide(velocity)
-#	match state_machine.current_state.name:
-#		EnemyWander:
-#			if velocity.length() > 0:
-#				var animation = "walk_" + str(returned_direction(velocity.normalized()))
-#				animated_sprite_2d.play(animation);
-#				hitbox_component.position = velocity.normalized() * 20;
-#		EnemyIdle:
-#			var animation = "idle_" + str(last_direction)
-#			animated_sprite_2d.play(animation);
-#		EnemyAttack:
-#			var animation = "attack_" + str(returned_direction(attack_direction))
-#			animated_sprite_2d.play(animation);
-#		EnemyFollow:
-#			var animation = "walk_" + str(returned_direction(velocity.normalized()))
-#			animated_sprite_2d.play(animation);
-#			hitbox_component.position = velocity.normalized() * 20;
+	var state = state_machine.current_state.name
+	var new_direction = returned_direction(velocity.normalized())
 	
+	if new_direction != last_direction:
+		last_direction = new_direction
+
+#	Enemy animation is cut off when moving away from player
+
+	match state:
+		"EnemyWander", "EnemyFollow":
+			var animation = "walk_" + str(last_direction)
+			if animated_sprite_2d.animation != animation:
+				animated_sprite_2d.play(animation)
+			hitbox_component.position = velocity * 40 # Assuming you want to position hitbox 20 units down in these states
+		"EnemyIdle":
+			var animation = "idle_" + str(last_direction)
+			if animated_sprite_2d.animation != animation:
+				animated_sprite_2d.play(animation)
+		"EnemyAttack":
+			if not attack_cooldown_timer.is_stopped():
+				return # Don't start a new attack while the cooldown is active
+			var animation = "attack_" + str(returned_direction(last_attack_direction.normalized()))
+			
+			if animated_sprite_2d.animation != animation:
+				animated_sprite_2d.play(animation)
+		_:
+			print("Unhandled state.")
+	move_and_collide(velocity)
+
 func returned_direction(vector: Vector2):
 	if abs(vector.x) > abs(vector.y):
 		if vector.x < 0.0:
@@ -63,19 +54,12 @@ func returned_direction(vector: Vector2):
 		else:
 			return "down";
 
-func _on_enemy_attack_attacked(direction):
-	if attack_cooldown_timer.is_stopped():
-		attack_cooldown_timer.start()
-		attack_direction = direction
-		attacking = true;
-		hitbox_component.monitoring = attacking;
-
 func _on_attack_cooldown_timer_timeout():
-	attack_cooldown_timer.stop();
-	player = get_tree().get_first_node_in_group("Player")
-	if player == null:
-		attacking = false;
-		hitbox_component.monitoring = attacking;
+	var state = state_machine.current_state.name
+	if state == "EnemyAttack":
+		animated_sprite_2d.play("attack_" + str(returned_direction(last_attack_direction.normalized()))) # Attack again immediately
 	else:
-		pass;
-		
+		return
+
+func _on_enemy_attack_facing(direction):
+	last_attack_direction = direction
