@@ -39,7 +39,6 @@ func physics_update(_delta: float):
 func _on_animated_sprite_2d_animation_looped():
 	animation_finished = true
 
-
 func _on_animated_sprite_2d_animation_finished():
 #	animation_finished = true
 	pass;

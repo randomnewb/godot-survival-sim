@@ -23,14 +23,15 @@ func _physics_process(delta):
 		"EnemyWander", "EnemyFollow":
 			var animation = "walk_" + str(last_direction)
 			animated_sprite_2d.play(animation)
-			hitbox_component.position = velocity * 40 * delta
 		"EnemyIdle":
 			var animation = "idle_" + str(last_direction)
 			animated_sprite_2d.play(animation)
 		"EnemyAttack":
 			if not attack_cooldown_timer.is_stopped() and not animated_sprite_2d.is_playing():
+				hitbox_component.monitoring = true;
 				var animation = "attack_" + str(returned_direction(last_attack_direction.normalized()))
 				animated_sprite_2d.play(animation)
+				hitbox_component.position = last_attack_direction.normalized() * 1500 * delta
 		_:
 			print("Unhandled state.")
 	move_and_collide(velocity * delta)
@@ -49,3 +50,7 @@ func returned_direction(vector: Vector2):
 
 func _on_enemy_attack_facing(direction):
 	last_attack_direction = direction
+
+
+func _on_attack_cooldown_timer_timeout():
+	hitbox_component.monitoring = false;
