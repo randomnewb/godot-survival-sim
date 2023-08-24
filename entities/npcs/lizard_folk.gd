@@ -22,11 +22,9 @@ func _on_player_position_changed(player_new_position):
 		last_attack_direction = player_new_position - global_position
 		player_last_known_pos = player_new_position
 
-
 func _physics_process(delta):
 	player = get_tree().get_first_node_in_group("Player")
 	if player != null and not player_connected: 
-		print("connected")
 		player_connected = true;
 		player.player_position_broadcasted.connect(self._on_player_position_changed)
 	
