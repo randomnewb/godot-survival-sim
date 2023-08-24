@@ -10,8 +10,6 @@ var direction = Vector2.ZERO;
 
 var animation_finished: bool = false;
 
-signal facing(direction)
-
 func enter():
 	player = get_tree().get_first_node_in_group("Player")
 	animation_finished = false;
@@ -21,7 +19,6 @@ func enter():
 func physics_update(_delta: float):
 	if player != null:
 		direction = player.global_position - enemy.global_position
-		emit_signal("facing",direction)
 
 		if direction.length() > 20 and animation_finished:
 			transitioned.emit(self, "EnemyFollow");

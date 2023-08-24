@@ -25,12 +25,15 @@ signal dropped_item
 signal mined_object (mining_target)
 signal health_updated(new_value)
 signal attacked
+signal player_position_broadcasted(player_position)
 
 func _input(event):
 	if event.is_action_pressed("drop_item"):
 		emit_signal("dropped_item", last_vector)
 
 func _process(delta):
+	emit_signal("player_position_broadcasted", self.global_position)
+	
 	input_vector = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()
 
 #	print(operating_system)

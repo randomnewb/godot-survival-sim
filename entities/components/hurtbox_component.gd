@@ -8,6 +8,7 @@ func damage(attack: Attack):
 
 	if health_component.health <= 0:
 		parent.queue_free()
+		Spawn.spawn_interactable("bronze_dagger", Spawn.Location.ENVIRONMENT, parent.position, "");
 	
 	health_component.taking_damage = true
 

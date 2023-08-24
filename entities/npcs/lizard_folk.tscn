@@ -45,6 +45,7 @@ shape = SubResource("CapsuleShape2D_nlkex")
 
 [node name="HealthComponent" parent="." index="2"]
 script = ExtResource("4_tpkqq")
+MAX_HEALTH = 40.0
 
 [node name="HitboxComponent" parent="." index="3"]
 position = Vector2(0, 27)
@@ -106,7 +107,6 @@ wait_time = 0.45
 [connection signal="animation_finished" from="AnimatedSprite2D" to="StateMachine/EnemyAttack" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_looped" from="AnimatedSprite2D" to="StateMachine/EnemyAttack" method="_on_animated_sprite_2d_animation_looped"]
 [connection signal="area_entered" from="HitboxComponent" to="HitboxComponent" method="_on_area_entered"]
-[connection signal="facing" from="StateMachine/EnemyAttack" to="." method="_on_enemy_attack_facing"]
 [connection signal="timeout" from="RegenTimer" to="HealthComponent" method="_on_regen_timer_timeout"]
 [connection signal="timeout" from="AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]
 
