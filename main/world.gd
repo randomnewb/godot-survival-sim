@@ -4,10 +4,9 @@ extends Node
 @onready var ctrl_inventory = $PlayerInventory/CtrlInventory
 @onready var player_inventory_parent = $PlayerInventory
 
-#var last_vector = "down"
-var inventory_visible = true;
+@onready var player = null;
 
-#signal item_removed(prototype_id)
+var inventory_visible = false;
 
 func _input(event):
 	if event.is_action_pressed("open_inventory"):
@@ -15,6 +14,8 @@ func _input(event):
 
 func _ready():
 	Spawn.spawn_player();
+	await get_tree().create_timer(0.20).timeout;
+	player = get_tree().get_first_node_in_group("Player")
 	
 	await get_tree().create_timer(0.85).timeout;
 	Spawn.spawn_interactable("bronze_dagger", Spawn.Location.RANDOM, "", "");
@@ -49,5 +50,7 @@ func _on_area_pickup_area_entered(area):
 	area.queue_free();
 
 func open_inventory():
-	inventory_visible = !inventory_visible
-	player_inventory_parent.visible = inventory_visible
+	if player != null:
+		player_inventory_parent.position = player.position + Vector2(-160, -89);
+		inventory_visible = !inventory_visible
+		player_inventory_parent.visible = inventory_visible

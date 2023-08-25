@@ -1,7 +1,7 @@
 extends Area2D
 
 @export var attack_damage := 25.0
-@export var knockback_force := 2.5
+@export var knockback_force := 1000.0
 @export var stun_time := 1.5
 
 func _on_area_entered(area):

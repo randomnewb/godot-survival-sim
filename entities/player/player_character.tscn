@@ -656,7 +656,7 @@ collision_mask = 16
 monitoring = false
 script = ExtResource("9_pn4gy")
 attack_damage = 25.0
-knockback_force = 2.5
+knockback_force = 1000.0
 stun_time = 1.5
 
 [node name="CollisionShape2D" parent="AreaWeaponHitbox" index="0"]
@@ -665,6 +665,8 @@ shape = SubResource("CapsuleShape2D_ayejg")
 
 [node name="HealthComponent" parent="." instance=ExtResource("10_t6kef")]
 script = ExtResource("11_g8ax7")
+
+[node name="Camera2D" type="Camera2D" parent="."]
 
 [connection signal="timeout" from="RegenTimer" to="HealthComponent" method="_on_regen_timer_timeout"]
 [connection signal="area_entered" from="AreaPickup" to="." method="_on_area_pickup_area_entered"]

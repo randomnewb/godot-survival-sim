@@ -83,8 +83,8 @@ func _process(delta):
 			animation = "idle_" + str(last_direction)
 			animated_sprite_2d.play(animation);
 
-	position.x = clamp(position.x, 5, width - 5);
-	position.y = clamp(position.y, 5, height - 5);
+#	position.x = clamp(position.x, 5, width - 5);
+#	position.y = clamp(position.y, 5, height - 5);
 	
 	#ray_cast code
 #	ray_cast_2d.target_position = input_vector * 25;
