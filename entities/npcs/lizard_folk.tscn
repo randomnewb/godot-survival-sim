@@ -45,7 +45,7 @@ shape = SubResource("CapsuleShape2D_nlkex")
 
 [node name="HealthComponent" parent="." index="2"]
 script = ExtResource("4_tpkqq")
-MAX_HEALTH = 40.0
+MAX_HEALTH = 20.0
 
 [node name="HitboxComponent" parent="." index="3"]
 position = Vector2(0, 27)

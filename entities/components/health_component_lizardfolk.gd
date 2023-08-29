@@ -1,8 +1,8 @@
 extends HealthComponent
 
 func _ready():
-	health = 40.0;
-	MAX_HEALTH = 40.0
+	health = 20.0;
+	MAX_HEALTH = 20.0
 	health_regen = 0.5;
 
 func _on_regen_timer_timeout():

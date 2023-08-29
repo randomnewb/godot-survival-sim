@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dt1xx74cs0w8m"
-path="res://.godot/imported/tileset_rock_green_slime_floor.png-8a0b35274758576897ed0c9bf23870d9.ctex"
+uid="uid://c7eu4wyiaxb7"
+path="res://.godot/imported/inner_grass_outer_slime.png-7f989e4ec4780d8090afbf1fb4950c62.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tilemaps/tileset_rock_green_slime_floor.png"
-dest_files=["res://.godot/imported/tileset_rock_green_slime_floor.png-8a0b35274758576897ed0c9bf23870d9.ctex"]
+source_file="res://tilemaps/inner_grass_outer_slime.png"
+dest_files=["res://.godot/imported/inner_grass_outer_slime.png-7f989e4ec4780d8090afbf1fb4950c62.ctex"]
 
 [params]
 

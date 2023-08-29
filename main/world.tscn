@@ -394,6 +394,9 @@ position = Vector2(64, -56)
 [node name="LizardFolk" parent="." instance=ExtResource("6_60r7k")]
 position = Vector2(245, 50)
 
+[node name="LizardFolk6" parent="." instance=ExtResource("6_60r7k")]
+position = Vector2(168, -48)
+
 [node name="LizardFolk5" parent="." instance=ExtResource("6_60r7k")]
 position = Vector2(104, 232)
 
@@ -405,6 +408,96 @@ position = Vector2(33, 37)
 
 [node name="LizardFolk3" parent="." instance=ExtResource("6_60r7k")]
 position = Vector2(344, -64)
+
+[node name="LizardFolk7" parent="." instance=ExtResource("6_60r7k")]
+position = Vector2(624, 32)
+
+[node name="LizardFolk8" parent="." instance=ExtResource("6_60r7k")]
+position = Vector2(592, 144)
+
+[node name="LizardFolk9" parent="." instance=ExtResource("6_60r7k")]
+position = Vector2(640, 160)
+
+[node name="LizardFolk10" parent="." instance=ExtResource("6_60r7k")]
+position = Vector2(704, 72)
+
+[node name="LizardFolk11" parent="." instance=ExtResource("6_60r7k")]
+position = Vector2(680, 224)
+
+[node name="LizardFolk12" parent="." instance=ExtResource("6_60r7k")]
+position = Vector2(200, 344)
+
+[node name="LizardFolk13" parent="." instance=ExtResource("6_60r7k")]
+position = Vector2(168, 456)
+
+[node name="LizardFolk14" parent="." instance=ExtResource("6_60r7k")]
+position = Vector2(216, 472)
+
+[node name="LizardFolk15" parent="." instance=ExtResource("6_60r7k")]
+position = Vector2(280, 384)
+
+[node name="LizardFolk16" parent="." instance=ExtResource("6_60r7k")]
+position = Vector2(256, 536)
+
+[node name="LizardFolk17" parent="." instance=ExtResource("6_60r7k")]
+position = Vector2(-168, 120)
+
+[node name="LizardFolk18" parent="." instance=ExtResource("6_60r7k")]
+position = Vector2(-200, 232)
+
+[node name="LizardFolk19" parent="." instance=ExtResource("6_60r7k")]
+position = Vector2(-152, 248)
+
+[node name="LizardFolk20" parent="." instance=ExtResource("6_60r7k")]
+position = Vector2(-88, 160)
+
+[node name="LizardFolk21" parent="." instance=ExtResource("6_60r7k")]
+position = Vector2(-112, 312)
+
+[node name="LizardFolk22" parent="." instance=ExtResource("6_60r7k")]
+position = Vector2(-160, -176)
+
+[node name="LizardFolk23" parent="." instance=ExtResource("6_60r7k")]
+position = Vector2(-192, -64)
+
+[node name="LizardFolk24" parent="." instance=ExtResource("6_60r7k")]
+position = Vector2(-144, -48)
+
+[node name="LizardFolk25" parent="." instance=ExtResource("6_60r7k")]
+position = Vector2(-80, -136)
+
+[node name="LizardFolk26" parent="." instance=ExtResource("6_60r7k")]
+position = Vector2(-104, 16)
+
+[node name="LizardFolk27" parent="." instance=ExtResource("6_60r7k")]
+position = Vector2(152, -392)
+
+[node name="LizardFolk28" parent="." instance=ExtResource("6_60r7k")]
+position = Vector2(120, -280)
+
+[node name="LizardFolk29" parent="." instance=ExtResource("6_60r7k")]
+position = Vector2(168, -264)
+
+[node name="LizardFolk30" parent="." instance=ExtResource("6_60r7k")]
+position = Vector2(232, -352)
+
+[node name="LizardFolk31" parent="." instance=ExtResource("6_60r7k")]
+position = Vector2(208, -200)
+
+[node name="LizardFolk32" parent="." instance=ExtResource("6_60r7k")]
+position = Vector2(376, -424)
+
+[node name="LizardFolk33" parent="." instance=ExtResource("6_60r7k")]
+position = Vector2(344, -312)
+
+[node name="LizardFolk34" parent="." instance=ExtResource("6_60r7k")]
+position = Vector2(392, -296)
+
+[node name="LizardFolk35" parent="." instance=ExtResource("6_60r7k")]
+position = Vector2(456, -384)
+
+[node name="LizardFolk36" parent="." instance=ExtResource("6_60r7k")]
+position = Vector2(432, -232)
 
 [node name="PlayerInventory" parent="." instance=ExtResource("3_5sh5d")]
 visible = false
