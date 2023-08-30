@@ -1,144 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://b4vuyuosxri4b"]
+[gd_scene load_steps=7 format=3 uid="uid://b4vuyuosxri4b"]
 
-[ext_resource type="Script" path="res://addons/gloot/ctrl_inventory.gd" id="1_82qr8"]
-[ext_resource type="PackedScene" uid="uid://btreuwhww1eom" path="res://inventories/basic_inventory.tscn" id="2_ce1hb"]
-
-[sub_resource type="FontFile" id="FontFile_yi05j"]
-face_index = null
-embolden = null
-transform = null
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/16/0/kerning_overrides/1/0 = Vector2(0, 0)
-cache/0/16/0/kerning_overrides/2/0 = Vector2(0, 0)
-cache/0/16/0/kerning_overrides/3/0 = Vector2(0, 0)
-cache/0/16/0/kerning_overrides/4/0 = Vector2(0, 0)
-cache/0/16/0/kerning_overrides/5/0 = Vector2(0, 0)
-cache/0/16/0/kerning_overrides/6/0 = Vector2(0, 0)
-cache/0/16/0/kerning_overrides/7/0 = Vector2(0, 0)
-cache/0/16/0/kerning_overrides/8/0 = Vector2(0, 0)
-cache/0/1/0/ascent = 0.0
-cache/0/1/0/descent = 0.0
-cache/0/1/0/underline_position = 0.0
-cache/0/1/0/underline_thickness = 0.0
-cache/0/1/0/scale = 1.0
-cache/0/1/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/1/0/kerning_overrides/1/0 = Vector2(0, 0)
-cache/0/1/0/kerning_overrides/2/0 = Vector2(0, 0)
-cache/0/1/0/kerning_overrides/3/0 = Vector2(0, 0)
-cache/0/1/0/kerning_overrides/4/0 = Vector2(0, 0)
-cache/0/1/0/kerning_overrides/5/0 = Vector2(0, 0)
-cache/0/1/0/kerning_overrides/6/0 = Vector2(0, 0)
-cache/0/1/0/kerning_overrides/7/0 = Vector2(0, 0)
-cache/0/1/0/kerning_overrides/8/0 = Vector2(0, 0)
-cache/0/2/0/ascent = 0.0
-cache/0/2/0/descent = 0.0
-cache/0/2/0/underline_position = 0.0
-cache/0/2/0/underline_thickness = 0.0
-cache/0/2/0/scale = 1.0
-cache/0/2/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/2/0/kerning_overrides/1/0 = Vector2(0, 0)
-cache/0/2/0/kerning_overrides/2/0 = Vector2(0, 0)
-cache/0/2/0/kerning_overrides/3/0 = Vector2(0, 0)
-cache/0/2/0/kerning_overrides/4/0 = Vector2(0, 0)
-cache/0/2/0/kerning_overrides/5/0 = Vector2(0, 0)
-cache/0/2/0/kerning_overrides/6/0 = Vector2(0, 0)
-cache/0/2/0/kerning_overrides/7/0 = Vector2(0, 0)
-cache/0/2/0/kerning_overrides/8/0 = Vector2(0, 0)
-cache/0/3/0/ascent = 0.0
-cache/0/3/0/descent = 0.0
-cache/0/3/0/underline_position = 0.0
-cache/0/3/0/underline_thickness = 0.0
-cache/0/3/0/scale = 1.0
-cache/0/3/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/3/0/kerning_overrides/1/0 = Vector2(0, 0)
-cache/0/3/0/kerning_overrides/2/0 = Vector2(0, 0)
-cache/0/3/0/kerning_overrides/3/0 = Vector2(0, 0)
-cache/0/3/0/kerning_overrides/4/0 = Vector2(0, 0)
-cache/0/3/0/kerning_overrides/5/0 = Vector2(0, 0)
-cache/0/3/0/kerning_overrides/6/0 = Vector2(0, 0)
-cache/0/3/0/kerning_overrides/7/0 = Vector2(0, 0)
-cache/0/3/0/kerning_overrides/8/0 = Vector2(0, 0)
-cache/0/4/0/ascent = 0.0
-cache/0/4/0/descent = 0.0
-cache/0/4/0/underline_position = 0.0
-cache/0/4/0/underline_thickness = 0.0
-cache/0/4/0/scale = 1.0
-cache/0/4/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/4/0/kerning_overrides/1/0 = Vector2(0, 0)
-cache/0/4/0/kerning_overrides/2/0 = Vector2(0, 0)
-cache/0/4/0/kerning_overrides/3/0 = Vector2(0, 0)
-cache/0/4/0/kerning_overrides/4/0 = Vector2(0, 0)
-cache/0/4/0/kerning_overrides/5/0 = Vector2(0, 0)
-cache/0/4/0/kerning_overrides/6/0 = Vector2(0, 0)
-cache/0/4/0/kerning_overrides/7/0 = Vector2(0, 0)
-cache/0/4/0/kerning_overrides/8/0 = Vector2(0, 0)
-cache/0/5/0/ascent = 0.0
-cache/0/5/0/descent = 0.0
-cache/0/5/0/underline_position = 0.0
-cache/0/5/0/underline_thickness = 0.0
-cache/0/5/0/scale = 1.0
-cache/0/5/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/5/0/kerning_overrides/1/0 = Vector2(0, 0)
-cache/0/5/0/kerning_overrides/2/0 = Vector2(0, 0)
-cache/0/5/0/kerning_overrides/3/0 = Vector2(0, 0)
-cache/0/5/0/kerning_overrides/4/0 = Vector2(0, 0)
-cache/0/5/0/kerning_overrides/5/0 = Vector2(0, 0)
-cache/0/5/0/kerning_overrides/6/0 = Vector2(0, 0)
-cache/0/5/0/kerning_overrides/7/0 = Vector2(0, 0)
-cache/0/5/0/kerning_overrides/8/0 = Vector2(0, 0)
-cache/0/6/0/ascent = 0.0
-cache/0/6/0/descent = 0.0
-cache/0/6/0/underline_position = 0.0
-cache/0/6/0/underline_thickness = 0.0
-cache/0/6/0/scale = 1.0
-cache/0/6/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/6/0/kerning_overrides/1/0 = Vector2(0, 0)
-cache/0/6/0/kerning_overrides/2/0 = Vector2(0, 0)
-cache/0/6/0/kerning_overrides/3/0 = Vector2(0, 0)
-cache/0/6/0/kerning_overrides/4/0 = Vector2(0, 0)
-cache/0/6/0/kerning_overrides/5/0 = Vector2(0, 0)
-cache/0/6/0/kerning_overrides/6/0 = Vector2(0, 0)
-cache/0/6/0/kerning_overrides/7/0 = Vector2(0, 0)
-cache/0/6/0/kerning_overrides/8/0 = Vector2(0, 0)
-cache/0/7/0/ascent = 0.0
-cache/0/7/0/descent = 0.0
-cache/0/7/0/underline_position = 0.0
-cache/0/7/0/underline_thickness = 0.0
-cache/0/7/0/scale = 1.0
-cache/0/7/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/7/0/kerning_overrides/1/0 = Vector2(0, 0)
-cache/0/7/0/kerning_overrides/2/0 = Vector2(0, 0)
-cache/0/7/0/kerning_overrides/3/0 = Vector2(0, 0)
-cache/0/7/0/kerning_overrides/4/0 = Vector2(0, 0)
-cache/0/7/0/kerning_overrides/5/0 = Vector2(0, 0)
-cache/0/7/0/kerning_overrides/6/0 = Vector2(0, 0)
-cache/0/7/0/kerning_overrides/7/0 = Vector2(0, 0)
-cache/0/7/0/kerning_overrides/8/0 = Vector2(0, 0)
-cache/0/8/0/ascent = 0.0
-cache/0/8/0/descent = 0.0
-cache/0/8/0/underline_position = 0.0
-cache/0/8/0/underline_thickness = 0.0
-cache/0/8/0/scale = 1.0
-cache/0/8/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/8/0/kerning_overrides/1/0 = Vector2(0, 0)
-cache/0/8/0/kerning_overrides/2/0 = Vector2(0, 0)
-cache/0/8/0/kerning_overrides/3/0 = Vector2(0, 0)
-cache/0/8/0/kerning_overrides/4/0 = Vector2(0, 0)
-cache/0/8/0/kerning_overrides/5/0 = Vector2(0, 0)
-cache/0/8/0/kerning_overrides/6/0 = Vector2(0, 0)
-cache/0/8/0/kerning_overrides/7/0 = Vector2(0, 0)
-cache/0/8/0/kerning_overrides/8/0 = Vector2(0, 0)
-
-[sub_resource type="Theme" id="Theme_gk631"]
-default_font = SubResource("FontFile_yi05j")
-default_font_size = 4
+[ext_resource type="Script" path="res://addons/gloot/ctrl_inventory_grid_ex.gd" id="1_h1ixr"]
+[ext_resource type="StyleBox" uid="uid://cr61gjk58dm2" path="res://styles/inventory_grid_field_style.tres" id="2_5cdw8"]
+[ext_resource type="Script" path="res://addons/gloot/inventory_grid_stacked.gd" id="2_nbxqo"]
+[ext_resource type="Resource" uid="uid://ecpdoevgwfr" path="res://data/main_items.tres" id="3_kh07l"]
+[ext_resource type="StyleBox" uid="uid://22g6lnn4enwy" path="res://styles/inventory_grid_field_highlighted_style.tres" id="3_pm0ep"]
+[ext_resource type="StyleBox" uid="uid://dccd2m5e2s4o5" path="res://styles/inventory_grid_selection_style.tres" id="4_h4tyv"]
 
 [node name="PlayerInventory" type="Control"]
+modulate = Color(1, 1, 1, 0.8)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -146,17 +16,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CtrlInventory" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -160.0
-offset_bottom = -45.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = SubResource("Theme_gk631")
-script = ExtResource("1_82qr8")
-inventory_path = NodePath("Inventory")
+[node name="CtrlInventoryGridEx" type="Control" parent="."]
+custom_minimum_size = Vector2(160, 160)
+anchors_preset = 0
+offset_right = 160.0
+offset_bottom = 160.0
+script = ExtResource("1_h1ixr")
+field_style = ExtResource("2_5cdw8")
+field_highlighted_style = ExtResource("3_pm0ep")
+selection_style = ExtResource("4_h4tyv")
+field_dimensions = Vector2(16, 16)
+inventory_path = NodePath("InventoryGridStacked")
 
-[node name="Inventory" parent="CtrlInventory" instance=ExtResource("2_ce1hb")]
+[node name="InventoryGridStacked" type="Node" parent="CtrlInventoryGridEx"]
+script = ExtResource("2_nbxqo")
+item_protoset = ExtResource("3_kh07l")

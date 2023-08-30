@@ -1,0 +1,7 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://22g6lnn4enwy"]
+
+[ext_resource type="Texture2D" uid="uid://cdhuw0juxw3up" path="res://images/field_highlighted_background.png" id="1_of4fx"]
+
+[resource]
+texture = ExtResource("1_of4fx")
+region_rect = Rect2(0, 0, 32, 32)

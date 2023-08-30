@@ -1,7 +1,7 @@
 extends Node
 
-@onready var player_inventory = $PlayerInventory/CtrlInventory/Inventory
-@onready var ctrl_inventory = $PlayerInventory/CtrlInventory
+@onready var player_inventory = $PlayerInventory/CtrlInventoryGridEx/InventoryGridStacked
+@onready var ctrl_inventory = $PlayerInventory/CtrlInventoryGridEx
 @onready var player_inventory_parent = $PlayerInventory
 
 @onready var player = null;

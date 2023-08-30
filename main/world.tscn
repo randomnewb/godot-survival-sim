@@ -1,9 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bj63f2r1w3da8"]
+[gd_scene load_steps=6 format=3 uid="uid://bj63f2r1w3da8"]
 
 [ext_resource type="Script" path="res://main/world.gd" id="1_eyapg"]
 [ext_resource type="PackedScene" uid="uid://b4vuyuosxri4b" path="res://inventories/player_inventory.tscn" id="3_5sh5d"]
-[ext_resource type="Script" path="res://addons/gloot/inventory_item.gd" id="4_k2esd"]
-[ext_resource type="Resource" uid="uid://ecpdoevgwfr" path="res://data/main_items.tres" id="5_v5xo5"]
 [ext_resource type="PackedScene" uid="uid://c1t0g4drcdvc8" path="res://entities/npcs/lizard_folk.tscn" id="6_60r7k"]
 [ext_resource type="PackedScene" uid="uid://c0kddhynfuah1" path="res://environment/rock.tscn" id="6_q00wq"]
 [ext_resource type="PackedScene" uid="uid://b75rqmgwf0y3d" path="res://tilemaps/cave_ground.tscn" id="8_ehhaq"]
@@ -505,31 +503,5 @@ position = Vector2(432, -232)
 
 [node name="PlayerInventory" parent="." instance=ExtResource("3_5sh5d")]
 visible = false
-
-[node name="CtrlInventory" parent="PlayerInventory" index="0"]
-offset_left = 6.0
-offset_top = 6.0
-offset_right = -8.0
-offset_bottom = -6.0
-
-[node name="_Node_31394" type="Node" parent="PlayerInventory/CtrlInventory/Inventory" index="0"]
-script = ExtResource("4_k2esd")
-protoset = ExtResource("5_v5xo5")
-prototype_id = "bronze_dagger"
-
-[node name="_Node_31466" type="Node" parent="PlayerInventory/CtrlInventory/Inventory" index="1"]
-script = ExtResource("4_k2esd")
-protoset = ExtResource("5_v5xo5")
-prototype_id = "bronze_dagger"
-
-[node name="_Node_31538" type="Node" parent="PlayerInventory/CtrlInventory/Inventory" index="2"]
-script = ExtResource("4_k2esd")
-protoset = ExtResource("5_v5xo5")
-prototype_id = "bronze_dagger"
-
-[node name="_Node_31610" type="Node" parent="PlayerInventory/CtrlInventory/Inventory" index="3"]
-script = ExtResource("4_k2esd")
-protoset = ExtResource("5_v5xo5")
-prototype_id = "bronze_dagger"
 
 [editable path="PlayerInventory"]

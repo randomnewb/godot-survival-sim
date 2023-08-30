@@ -3,29 +3,16 @@
 [ext_resource type="Script" path="res://examples/inventory_grid_stacked_transfer.gd" id="1_yjyyb"]
 [ext_resource type="Script" path="res://addons/gloot/ctrl_inventory_grid_ex.gd" id="2_dos65"]
 [ext_resource type="Texture2D" uid="uid://bpmdtgysdm2tp" path="res://images/field_background.png" id="3_lwfya"]
+[ext_resource type="StyleBox" uid="uid://cr61gjk58dm2" path="res://styles/inventory_grid_field_style.tres" id="3_ybeew"]
 [ext_resource type="Texture2D" uid="uid://cdhuw0juxw3up" path="res://images/field_highlighted_background.png" id="4_8hltm"]
+[ext_resource type="StyleBox" uid="uid://22g6lnn4enwy" path="res://styles/inventory_grid_field_highlighted_style.tres" id="4_gk43s"]
+[ext_resource type="StyleBox" uid="uid://dccd2m5e2s4o5" path="res://styles/inventory_grid_selection_style.tres" id="5_b2qc3"]
 [ext_resource type="Texture2D" uid="uid://b2hkcwwq10cut" path="res://icon.png" id="5_igoy6"]
 [ext_resource type="Script" path="res://addons/gloot/ctrl_item_slot_ex.gd" id="6_ce2cs"]
 [ext_resource type="Script" path="res://addons/gloot/inventory_grid_stacked.gd" id="7_thtrx"]
 [ext_resource type="Resource" uid="uid://ddrmqwl3guset" path="res://tests/data/item_definitions_grid.tres" id="8_8dj3i"]
 [ext_resource type="Script" path="res://addons/gloot/inventory_item.gd" id="9_1bceo"]
 [ext_resource type="Script" path="res://addons/gloot/item_slot.gd" id="10_jccqb"]
-
-[sub_resource type="StyleBoxTexture" id="1"]
-texture = ExtResource("3_lwfya")
-region_rect = Rect2(0, 0, 32, 32)
-
-[sub_resource type="StyleBoxTexture" id="2"]
-texture = ExtResource("4_8hltm")
-region_rect = Rect2(0, 0, 32, 32)
-
-[sub_resource type="StyleBoxFlat" id="5"]
-draw_center = false
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(1, 0.92549, 0.152941, 1)
 
 [sub_resource type="StyleBoxTexture" id="3"]
 texture = ExtResource("3_lwfya")
@@ -82,9 +69,9 @@ texture_filter = 1
 custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 script = ExtResource("2_dos65")
-field_style = SubResource("1")
-field_highlighted_style = SubResource("2")
-selection_style = SubResource("5")
+field_style = ExtResource("3_ybeew")
+field_highlighted_style = ExtResource("4_gk43s")
+selection_style = ExtResource("5_b2qc3")
 draw_grid = false
 inventory_path = NodePath("../../../../../InventoryGridStackedLeft")
 default_item_texture = ExtResource("5_igoy6")

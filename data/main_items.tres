@@ -6,25 +6,25 @@
 script = ExtResource("1_cqp5u")
 json_data = "[
     {
-        \"id\": \"minimal_item\"
-    },
-    {
-        \"id\": \"minimal_item_2\"
-    },
-    {
         \"id\": \"bronze_dagger\",
         \"image\": \"res://assets/sprites/items/bronze_dagger.png\",
-        \"name\": \"Bronze Dagger\"
+        \"name\": \"Bronze Dagger\",
+        \"width\": 1,
+        \"height\": 2
     },
     {
         \"id\": \"rock\",
         \"image\": \"res://assets/sprites/items/rock.png\",
-        \"name\": \"Rock\"
+        \"name\": \"Rock\",
+        \"width\": 1,
+        \"height\": 1
     },
     {
-        \"id\": \"item2\",
-        \"image\": \"res://images/item_scroll_blue.png\",
-        \"name\": \"item 2\"
+        \"id\": \"cheese\",
+        \"image\": \"res://assets/sprites/items/cheese.png\",
+        \"name\": \"Cheese\",
+        \"width\": 1,
+        \"height\": 1
     }
 ]
 
